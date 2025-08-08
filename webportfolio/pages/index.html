@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,6 +38,7 @@
             z-index: 1000;
             padding: 1rem 0;
             transition: all 0.3s ease;
+            height: 70px;
         }
 
         .nav-container {
@@ -46,6 +48,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            height: 100%;
         }
 
         .logo {
@@ -116,6 +119,7 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            z-index: 1001;
         }
 
         .mobile-toggle span {
@@ -574,31 +578,38 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        /* Responsive Design */
+        /* Mobile Navigation - FIXED VERSION */
         @media (max-width: 768px) {
             .nav-menu {
                 position: fixed;
-                top: 70px;
-                left: -100%;
+                top: 70px; /* Start right below navbar */
+                left: 0;
                 width: 100%;
-                height: calc(100vh - 70px);
+                height: 0; /* Start with no height */
                 background: rgba(10, 10, 10, 0.95);
                 backdrop-filter: blur(10px);
                 flex-direction: column;
                 justify-content: start;
-                padding-top: 2rem;
-                transition: left 0.3s ease;
-                border-right: 1px solid #18181b;
+                padding: 0; /* Start with no padding */
+                transition: all 0.3s ease;
+                border-bottom: 1px solid #18181b;
+                z-index: 999; /* Below navbar */
+                overflow: hidden; /* Hide content when collapsed */
+                opacity: 0; /* Start invisible */
             }
 
             .nav-menu.active {
-                left: 0;
+                height: auto; /* Allow natural height */
+                min-height: 200px; /* Minimum height for menu items */
+                padding: 2rem 0; /* Add padding when open */
+                opacity: 1; /* Make visible */
             }
 
             .mobile-toggle {
@@ -673,11 +684,12 @@
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="logo">risto.dev</a>
-            
+
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
@@ -703,7 +715,7 @@
             <p class="hero-subtitle">full stack developer</p>
             <div class="hero-details">
                 <p>crafting digital experiences with clean code<br>
-                and thoughtful design. based in helsinki.</p>
+                    and thoughtful design. based in helsinki.</p>
             </div>
         </div>
     </section>
@@ -713,8 +725,10 @@
             <div class="about-content">
                 <div class="about-text">
                     <h2>about</h2>
-                    <p>I'm a developer who believes in the power of clean, efficient code. I focus on building scalable applications that solve real problems.</p>
-                    <p>My approach combines technical precision with user-centered design, creating solutions that are both functional and intuitive.</p>
+                    <p>I'm a developer who believes in the power of clean, efficient code. I focus on building scalable
+                        applications that solve real problems.</p>
+                    <p>My approach combines technical precision with user-centered design, creating solutions that are
+                        both functional and intuitive.</p>
                     <div class="skills">
                         <span class="skill">javascript</span>
                         <span class="skill">react</span>
@@ -750,7 +764,8 @@
                     <div class="project-number">01</div>
                     <div class="project-info">
                         <h3>e-commerce platform</h3>
-                        <p class="project-description">full-stack e-commerce solution with real-time inventory management, payment processing, and admin dashboard.</p>
+                        <p class="project-description">full-stack e-commerce solution with real-time inventory
+                            management, payment processing, and admin dashboard.</p>
                         <p class="project-tech">react • node.js • postgresql • stripe</p>
                     </div>
                     <div class="project-links">
@@ -769,7 +784,8 @@
                     <div class="project-number">02</div>
                     <div class="project-info">
                         <h3>task management app</h3>
-                        <p class="project-description">collaborative workspace with real-time updates, team management, and advanced analytics dashboard.</p>
+                        <p class="project-description">collaborative workspace with real-time updates, team management,
+                            and advanced analytics dashboard.</p>
                         <p class="project-tech">next.js • prisma • websockets • tailwind</p>
                     </div>
                     <div class="project-links">
@@ -788,7 +804,8 @@
                     <div class="project-number">03</div>
                     <div class="project-info">
                         <h3>analytics dashboard</h3>
-                        <p class="project-description">data visualization platform with custom charts, real-time metrics, and automated reporting.</p>
+                        <p class="project-description">data visualization platform with custom charts, real-time
+                            metrics, and automated reporting.</p>
                         <p class="project-tech">vue.js • d3.js • python • redis</p>
                     </div>
                     <div class="project-links">
@@ -843,7 +860,8 @@
                     </div>
                     <div class="form-group">
                         <label for="message">message</label>
-                        <textarea id="message" name="message" rows="4" placeholder="tell me about your project..." required></textarea>
+                        <textarea id="message" name="message" rows="4" placeholder="tell me about your project..."
+                            required></textarea>
                     </div>
                     <button type="submit" class="submit-button">send message</button>
                 </form>
@@ -855,7 +873,8 @@
         <div class="footer-content">
             <div class="footer-section footer-brand">
                 <h3>risto toivanen</h3>
-                <p>full stack developer focused on creating efficient, scalable solutions. always learning, always building.</p>
+                <p>full stack developer focused on creating efficient, scalable solutions. always learning, always
+                    building.</p>
                 <div class="social-links">
                     <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
@@ -930,7 +949,7 @@
                     const element = entry.target;
                     element.style.opacity = '1';
                     element.style.transform = 'translateY(0)';
-                    
+
                     // Stagger animations for skills
                     if (element.classList.contains('skill')) {
                         const skills = element.parentElement.querySelectorAll('.skill');
@@ -955,15 +974,15 @@
 
         // Form submission
         const contactForm = document.querySelector('.contact-form');
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const submitButton = this.querySelector('.submit-button');
             const originalText = submitButton.textContent;
-            
+
             submitButton.textContent = 'sending...';
             submitButton.disabled = true;
-            
+
             // Simulate form submission
             setTimeout(() => {
                 submitButton.textContent = 'message sent';
@@ -997,7 +1016,7 @@
             const scrolled = window.pageYOffset;
             const hero = document.querySelector('.hero');
             const parallaxSpeed = 0.5;
-            
+
             if (hero) {
                 hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
             }
@@ -1008,7 +1027,7 @@
             let i = 0;
             element.textContent = '';
             element.style.opacity = '1';
-            
+
             function type() {
                 if (i < text.length) {
                     element.textContent += text.charAt(i);
@@ -1035,7 +1054,7 @@
                 item.style.transform = 'translateX(10px)';
                 item.style.paddingLeft = '2rem';
             });
-            
+
             item.addEventListener('mouseleave', () => {
                 item.style.transform = 'translateX(0)';
                 item.style.paddingLeft = '0';
@@ -1079,4 +1098,5 @@
         }
     </script>
 </body>
+
 </html>
