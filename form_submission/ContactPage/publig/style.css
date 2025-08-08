@@ -1,0 +1,101 @@
+:root{
+    --Background: rgb(79, 228, 79);
+    --Container: rgba(210, 244, 184, 0.801);
+}
+
+body, html{
+    background-color: var(--Background);
+    margin: 0;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.img-container {
+    margin-bottom: 1.5rem;
+}
+
+.img-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.title {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.title h2 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.contact_form_container {
+    width: 100%;
+    max-width: 400px;
+}
+
+form.contact_form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.name_container,
+.email_container,
+.textarea_container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Inputs and textarea styling */
+input,
+textarea {
+    padding: 0.6rem 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* More efficient focus styling for all inputs and textarea */
+input:focus,
+textarea:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* Label styling */
+.label {
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Submit button container */
+.submit_btn {
+    text-align: center;
+}
+
+/* Submit button styling */
+.submit_btn input[type="submit"] {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit_btn input[type="submit"]:hover {
+    background-color: #0056b3;
+}
