@@ -6,6 +6,7 @@
     justify-content: center;
     text-align: left;
     padding: 0 2rem;
+    background-image: url('../img/frontpage_img.jpg');
 }
 
 .hero-content {
