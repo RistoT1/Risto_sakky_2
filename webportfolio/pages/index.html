@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Risto Toivanen - Web Developer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/main.css">
 </head>
 
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#home" class="logo">risto.dev</a>
+            <a href="#home" class="logo">risto.rt</a>
 
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#projects" class="nav-link">Work</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><button class="theme-toggle" id="theme-toggle"><i class="fas fa-terminal"></i></button></li>
+                <li><a href="readmore.html" class="nav-link">Read more</a></li>
+                <li><button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button></li>
             </ul>
 
             <div class="mobile-toggle" id="mobile-toggle">
@@ -38,20 +39,28 @@
             </h1>
             <p class="hero-subtitle">SOFTWARE DEVELOPER</p>
             <div class="hero-details">
-                <p>Second-year student at Sakky in Kuopio, studying software development. Developing practical skills in programming and software design.</p>
+                <p>Second-year student at Sakky in Kuopio, studying software development. Developing practical skills in
+                    programming and software design.</p>
             </div>
         </div>
     </section>
 
     <section class="about" id="about">
         <div class="container">
+            <div class="branch-svg-container">
+                <img src="../img/branch.svg" alt="">
+            </div>
             <div class="about-content">
                 <div class="about-text">
                     <h2>about</h2>
-                    <p>I'm a developer who believes in the power of clean, efficient code. I focus on building scalable
-                        applications that solve real problems.</p>
-                    <p>My approach combines technical precision with user-centered design, creating solutions that are
-                        both functional and intuitive.</p>
+                    <p>I’m a second-year student developer who knows the basics well and enjoys writing clean,
+                        straightforward code. I like working on projects that are practical and solve everyday problems
+                        without overcomplicating things.</p>
+                    <p>My focus is on building functional, reliable applications while keeping things simple and
+                        user-friendly. I’m still learning and growing, but I’m comfortable with the fundamentals and
+                        excited to keep improving step by step :&#41;</p>
+                    <p>When I’m not coding, I enjoy spending time with friends, going to the gym, and focusing on the
+                        things that really matter.</p>
                     <div class="skills">
                         <span class="skill">javascript</span>
                         <span class="skill">Html</span>
@@ -61,14 +70,22 @@
                         <span class="skill">PHP</span>
                     </div>
                 </div>
+
                 <div class="about-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">3+</div>
-                        <div class="stat-label">years experience</div>
+                    <div class="profile-image">
+                        <div class="profile-circle">
+                            <img src="../img/your-profile-image.jpg" alt="Risto Toivanen">
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-label">projects completed</div>
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">years experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">projects completed</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,16 +99,12 @@
                 <div class="project-item">
                     <div class="project-number">01</div>
                     <div class="project-info">
-                        <h3>e-commerce platform</h3>
-                        <p class="project-description">full-stack e-commerce solution with real-time inventory
-                            management, payment processing, and admin dashboard.</p>
-                        <p class="project-tech">react • node.js • postgresql • stripe</p>
+                        <h3>PHP-SQL Booking System</h3>
+                        <p class="project-description">Appointment booking system featuring user authentication,
+                            calendar integration, and real-time availability updates.</p>
+                        <p class="project-tech">PHP • SQL • JavaScript • HTML • CSS</p>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i>
-                            live site
-                        </a>
                         <a href="#" class="project-link">
                             <i class="fab fa-github"></i>
                             source code
@@ -102,10 +115,10 @@
                 <div class="project-item">
                     <div class="project-number">02</div>
                     <div class="project-info">
-                        <h3>task management app</h3>
-                        <p class="project-description">collaborative workspace with real-time updates, team management,
-                            and advanced analytics dashboard.</p>
-                        <p class="project-tech">next.js • prisma • websockets • tailwind</p>
+                        <h3>Health Tracker - Page</h3>
+                        <p class="project-description">A multi-feature health tracker including BMI calculator, exercise
+                            diary, health info, and sports guide to promote active living.</p>
+                        <p class="project-tech">html • css • javascript • php • sql</p>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link">
@@ -122,17 +135,17 @@
                 <div class="project-item">
                     <div class="project-number">03</div>
                     <div class="project-info">
-                        <h3>analytics dashboard</h3>
-                        <p class="project-description">data visualization platform with custom charts, real-time
-                            metrics, and automated reporting.</p>
-                        <p class="project-tech">vue.js • d3.js • python • redis</p>
+                        <h3>photo booth website</h3>
+                        <p class="project-description">Website for a photo booth service with booking functionality and
+                            image gallery and mail sender.</p>
+                        <p class="project-tech">html • css • javascript • php</p>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link">
                             <i class="fas fa-external-link-alt"></i>
                             live site
                         </a>
-                        <a href="#" class="project-link">
+                        <a href="https://github.com/RistoT1/Photobooth-website" class="project-link">
                             <i class="fab fa-github"></i>
                             source code
                         </a>
@@ -141,6 +154,7 @@
             </div>
         </div>
     </section>
+
 
     <section class="contact" id="contact">
         <div class="container">

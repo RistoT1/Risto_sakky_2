@@ -99,24 +99,25 @@ themeToggle.addEventListener('click', () => {
     // Add light/dark theme toggle functionality here if needed
     console.log('Theme toggle clicked');
 });
-
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    const parallaxSpeed = 0.4;
-    const navbar = document.querySelector('.navbar');
-    const maxScroll = 500;
-
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
-    }
-
-    let scrollY = window.scrollY;
-    let scrollRatio = Math.min(scrollY / maxScroll, 1);
-    let opacity = 0.95 - scrollRatio * (0.95 - 0.2);
-    navbar.style.background = `rgb(93, 71, 123, ${opacity})`;
-
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            if (target.id === "home") {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+    });
 });
 
 // Add typing effect to hero subtitle
