@@ -1,11 +1,15 @@
 /* Hero Section */
 .hero {
-    min-height: 100vh;
+    min-height: 1000vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: left;
     padding: 0 2rem;
+    background-image: url('../img/frontpage_img.jpg');
+    background-size: cover;       /* make it fill the section */
+    background-position: center;  /* keep it centered */
+    background-repeat: no-repeat;
 }
 
 .hero-content {
