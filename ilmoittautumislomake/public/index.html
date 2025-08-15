@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+<body data-page="lomake">
+    <div class="container">
+        <form id="form_ilmoittautuminen" class="ilmottautumis-lomake">
+            <label for="etunimi">Etunimi</label>
+            <input type="text" id="etunimi" name="etunimi" required>
+
+            <label for="sukunimi">Sukunimi</label>
+            <input type="text" id="sukunimi" name="sukunimi" required>
+
+            <label for="sahkoposti">Sähköposti</label>
+            <input type="email" id="sahkoposti" name="sahkoposti" required>
+
+            <label for="puhelinnumero">Puhelinnumero</label>
+            <input type="tel" id="puhelinnumero" name="puhelinnumero" required>
+
+            <label for="kurssi">Kurssin valinta</label>
+            <select id="kurssi" name="kurssi" required>
+                <option value="">Valitse kurssi</option>
+                <option value="ohjelmointi">Ohjelmointi</option>
+                <option value="verkkotekniikka">Verkkotekniikka</option>
+                <option value="tietoturva">Tietoruva</option>
+            </select>
+
+            <button type="submit">Ilmottaudu</button>
+            <div class="message" id="message">
+    
+            </div>
+        </form>
+        
+        <div class="ilmoittautuneet">
+            <h2>Ilmoittautuneet</h2>
+            <div id="ilmoittautuneet-lista">
+                <!-- Ilmoittautuneet js-->
+            </div>
+        </div>
+        <script src="index.js"></script>
+    </div>
+</body>
+</html>
