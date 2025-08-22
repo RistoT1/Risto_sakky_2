@@ -8,13 +8,13 @@ try {
 
         $kurssit = $pdo->query("
             SELECT Kurssi_ID, Nimi
-            FROM kurssit
+            FROM kurssi
             ORDER BY Nimi ASC
         ")->fetchAll(PDO::FETCH_ASSOC);
 
         $opiskelijat = $pdo->query("
             SELECT  Opiskelija_ID, CONCAT(Etunimi, ' ', Sukunimi) AS Nimi
-            FROM opiskelijat
+            FROM opiskelija
             ORDER BY Etunimi ASC
         ")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -40,7 +40,7 @@ try {
         $kurssi_id = (int) $input['Kurssi_ID'];
         $opiskelija_id = (int) $input['Opiskelija_ID'];
 
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM kurssit WHERE Kurssi_ID = ?");
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM kurssi WHERE Kurssi_ID = ?");
         $stmt->execute([$kurssi_id]);
         if ($stmt->fetchColumn() == 0) {
             echo json_encode([
@@ -50,7 +50,7 @@ try {
             exit;
         }
 
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM opiskelijat WHERE Opiskelija_ID = ?");
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM opiskelija WHERE Opiskelija_ID = ?");
         $stmt->execute([$opiskelija_id]);
         if ($stmt->fetchColumn() == 0) {
             echo json_encode([

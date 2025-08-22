@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $opintopisteet = htmlspecialchars(trim($input['Opintopisteet']));
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO kurssit (Kurssikoodi, Nimi, Opintopisteet) VALUES (?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO kurssi (Kurssikoodi, Nimi, Opintopisteet) VALUES (?, ?, ?)");
         $stmt->execute([$kurssikoodi, $kurssiNimi, $opintopisteet]);
 
         echo json_encode([
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     try {
-        $stmt = $pdo->query("SELECT * FROM kurssit ORDER BY LuontiPvm DESC LIMIT 25");
+        $stmt = $pdo->query("SELECT * FROM kurssi ORDER BY LuontiPvm DESC LIMIT 25");
         $kurssit = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         echo json_encode([

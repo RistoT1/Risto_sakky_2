@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "../../src/db.php"; 
+require_once __DIR__ . "../../src/db.php";
 header("Content-Type: application/json; charset=UTF-8");
 
 try {
@@ -7,7 +7,7 @@ try {
 
         $opiskelijat = $pdo->query("
             SELECT Opiskelija_ID, CONCAT(Etunimi, ' ', Sukunimi) AS Nimi
-            FROM opiskelijat
+            FROM opiskelija
             ORDER BY Etunimi ASC
         ")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -17,7 +17,7 @@ try {
         if ($studentId) {
             $stmt = $pdo->prepare("
                 SELECT k.Kurssi_ID, k.Nimi
-                FROM kurssit k
+                FROM kurssi k
                 INNER JOIN opiskelija_kurssi ok ON k.Kurssi_ID = ok.Kurssi_ID
                 WHERE ok.Opiskelija_ID = ?
                 ORDER BY k.Nimi ASC
@@ -50,14 +50,14 @@ try {
         $arvosana = (int) $input['Arvosana'];
         $pvm = $input['Pvm'];
 
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM kurssit WHERE Kurssi_ID = ?");
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM kurssi WHERE Kurssi_ID = ?");
         $stmt->execute([$kurssi_id]);
         if ($stmt->fetchColumn() == 0) {
             echo json_encode(["status" => "virhe", "message" => "Kurssia ei löydy."]);
             exit;
         }
 
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM opiskelijat WHERE Opiskelija_ID = ?");
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM opiskelija WHERE Opiskelija_ID = ?");
         $stmt->execute([$opiskelija_id]);
         if ($stmt->fetchColumn() == 0) {
             echo json_encode(["status" => "virhe", "message" => "Opiskelijaa ei löydy."]);
@@ -70,13 +70,14 @@ try {
             echo json_encode(["status" => "virhe", "message" => "Opiskelija ei ole ilmoittautunut tälle kurssille."]);
             exit;
         }
-
+        //kannattaa chekata onko jo arvo
         $stmt = $pdo->prepare("
-            INSERT INTO suoritukset (Kurssi_ID, Opiskelija_ID, Pvm, Arvosana)
-            VALUES (?, ?, ?, ?)
-            ON DUPLICATE KEY UPDATE Pvm = VALUES(Pvm), Arvosana = VALUES(Arvosana)
-        ");
-        $stmt->execute([$kurssi_id, $opiskelija_id, $pvm, $arvosana]);
+            UPDATE opiskelija_kurssi
+            SET suorituspaivamaara = ?, Arvosana = ?
+            WHERE Opiskelija_ID = ? AND Kurssi_ID = ?
+            "
+        );
+        $stmt->execute([$pvm, $arvosana, $opiskelija_id, $kurssi_id]);
 
         echo json_encode([
             "status" => "onnistui",

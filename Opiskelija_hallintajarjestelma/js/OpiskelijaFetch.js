@@ -10,15 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await response.json();
 
       if (result.status === 'success' && Array.isArray(result.data)) {
-        opiskelijat.innerHTML = ''; 
+        opiskelijat.innerHTML = '';
 
         result.data.forEach(opiskelija => {
           const div = document.createElement('div');
           div.classList.add('opiskelija');
           div.innerHTML = `
-            <h3>${opiskelija.Etunimi} ${opiskelija.Sukunimi}</h3>
-            <p>Sähköposti: ${opiskelija.Sahkoposti}</p>
-            <p>Syntymäaika: ${opiskelija.SyntymaAika}</p>
+            <h3>${opiskelija.etunimi} ${opiskelija.sukunimi}</h3>
+            <p>Sähköposti: ${opiskelija.sahkoposti}</p>
+            <p>Syntymäaika: ${opiskelija.syntymaika}</p>
           `;
           opiskelijat.appendChild(div);
         });
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
       Etunimi: formData.get('Etunimi'),
       Sukunimi: formData.get('Sukunimi'),
       Sahkoposti: formData.get('Sahkoposti'),
-      SyntymaAika: formData.get('SyntymaAika')
+      Syntymaika: formData.get('Syntymaika')
     };
 
     await insertOpiskelija(data);
@@ -62,5 +62,5 @@ document.addEventListener('DOMContentLoaded', () => {
     await fetchOpiskelijat();
   });
 
-  fetchOpiskelijat(); 
+  fetchOpiskelijat();
 });

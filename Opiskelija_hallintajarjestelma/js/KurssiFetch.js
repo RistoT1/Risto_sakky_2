@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const div = document.createElement('div');
           div.classList.add('kurssi');
           div.innerHTML = `
-            <h3>${kurssi.Kurssikoodi}: ${kurssi.Nimi}</h3>
-            <p>Opintopisteet: ${kurssi.Opintopisteet}</p>
+            <h3>${kurssi.kurssikoodi}: ${kurssi.nimi}</h3>
+            <p>Opintopisteet: ${kurssi.opintopisteet}</p>
           `;
           kurssitContainer.appendChild(div);
         });

@@ -25,8 +25,8 @@
                 <input type="text" name="Sukunimi" id="Sukunimi" placeholder="Opiskelijan sukunimi" required>
                 <label for="Sahkoposti">Sähköposti</label>
                 <input type="email" name="Sahkoposti" id="Sahkoposti" placeholder="Opiskelijan Sähköposti" required>
-                <label for="SyntymaAika">Syntymäaika</label>
-                <input type="date" name="SyntymaAika" id="SyntymaAika" value="2001-09-11" required>
+                <label for="Syntymaika">Syntymäika</label>
+                <input type="date" name="Syntymaika" id="Syntymaika" value="2001-09-11" required>
                 <button type="submit">Lisää Opiskelija</button>
             </form>
 
