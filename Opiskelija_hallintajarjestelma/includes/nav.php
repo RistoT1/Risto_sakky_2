@@ -17,6 +17,8 @@ $root = basename(dirname($_SERVER['PHP_SELF'])) === 'pages' ? '../' : '';
                     class="<?= $currentFile === 'Suoritukset.php' ? 'active' : '' ?>">Suoritukset</a></li>
             <li><a href="<?= $root ?>pages/Ilmottaudu.php"
                     class="<?= $currentFile === 'Ilmottaudu.php' ? 'active' : '' ?>">Ilmottaudu</a></li>
+            <li><a href="<?= $root ?>pages/HaeOpiskelija.php"
+                    class="<?= $currentFile === 'HaeOpiskelija.php' ? 'active' : '' ?>">Hae Opiskelija</a></li>
         </ul>
     </div>
 </nav>
