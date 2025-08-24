@@ -1,6 +1,7 @@
 const buttons = document.querySelectorAll(".haeBtn");
 const label = document.getElementById("formLabel");
 const input = document.getElementById("inputField");
+const form = document.getElementById("HaeForm");
 
 for (const btn of buttons) {
     btn.addEventListener("click", () => {
@@ -20,3 +21,19 @@ for (const btn of buttons) {
         }
     });
 }
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const queryString = new URLSearchParams(formData).toString();
+
+    const response = await fetch(`your-api-endpoint?${queryString}`);
+    const data = await response.json();
+    if(!response.ok) {
+        console.error("Error fetching data:", data);
+    }
+    if(data.status === "success") {
+        console.log("Fetched data:", data);
+    }
+});
+
