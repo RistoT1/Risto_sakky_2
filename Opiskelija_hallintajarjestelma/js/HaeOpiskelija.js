@@ -27,13 +27,59 @@ form.addEventListener("submit", async (e) => {
     const formData = new FormData(form);
     const queryString = new URLSearchParams(formData).toString();
 
-    const response = await fetch(`your-api-endpoint?${queryString}`);
-    const data = await response.json();
-    if(!response.ok) {
-        console.error("Error fetching data:", data);
-    }
-    if(data.status === "success") {
-        console.log("Fetched data:", data);
+    try {
+        const response = await fetch(`../api/HaeOpiskelijaFetch.php?${queryString}`);
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.error("Network error:", response.status, data);
+            return;
+        }
+
+        const resultsContainer = document.getElementById("Suoritus-Info");
+        resultsContainer.innerHTML = ""; // Clear previous results
+
+        if (data.status === "success") {
+            // Check if any students were returned
+            if (!data.data || data.data.length === 0) {
+                const noResults = document.createElement("p");
+                noResults.textContent = "Ei tuloksia."; // "No results"
+                resultsContainer.appendChild(noResults);
+                return;
+            }
+
+            console.log("Fetched data:", data);
+
+            for (const opiskelija of data.data) {
+                const div = document.createElement("div");
+                div.classList.add("opiskelija");
+
+                // Student info
+                const info = document.createElement("p");
+                info.textContent = `${opiskelija.Etunimi} ${opiskelija.Sukunimi} (${opiskelija.Sahkoposti})`;
+                div.appendChild(info);
+
+                // Courses list
+                if (opiskelija.kurssit && opiskelija.kurssit.length > 0) {
+                    const ul = document.createElement("ul");
+                    for (const kurssi of opiskelija.kurssit) {
+                        const li = document.createElement("li");
+                        li.textContent = `${kurssi.nimi} (${kurssi.opintopisteet} op)`;
+                        ul.appendChild(li);
+                    }
+                    div.appendChild(ul);
+                } else {
+                    const noCourses = document.createElement("p");
+                    noCourses.textContent = "Ei kursseja";
+                    div.appendChild(noCourses);
+                }
+
+                resultsContainer.appendChild(div);
+            }
+        } else {
+            console.error("Server error:", data.message);
+        }
+    } catch (error) {
+        console.error("Fetch failed:", error);
     }
 });
-
