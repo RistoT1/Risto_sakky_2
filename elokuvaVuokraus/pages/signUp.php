@@ -17,9 +17,12 @@ $csrf_token = $_SESSION['csrf_token'];
     <title>Document</title>
     <link rel="stylesheet" href="./../styles/form.css">
     <link rel="stylesheet" href="./../styles/main.css">
+    <link rel="stylesheet" href="./../styles/nav.css">
 </head>
 
 <body>
+     <?php require_once __DIR__ . '/../includes/nav.php'; ?>
+
     <div class="formContainer">
         <form action="" method="post">
             <input type="hidden" name="csrf_token"

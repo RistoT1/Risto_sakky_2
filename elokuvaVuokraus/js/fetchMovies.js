@@ -15,7 +15,12 @@ const fetchMovies = async () => {
         const result = await response.json();
         const movies = result.data || [];
 
-        selectOption.innerHTML = ''; 
+        selectOption.innerHTML = '';
+
+        const defaultOption = document.createElement('option');
+        defaultOption.value = 0;
+        defaultOption.textContent = 'Valitse elokuva';
+        selectOption.appendChild(defaultOption);
 
         if (!Array.isArray(movies) || movies.length === 0) {
             const option = document.createElement('option');
@@ -38,6 +43,37 @@ const fetchMovies = async () => {
     }
 };
 
+const deleteMovie = async (movieId) => {
+   try {
+        const response = await fetch(`./../api/deleteMovie.php?movieId=${encodeURIComponent(movieId)}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-Token': window.csrfToken
+            }
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            alert('Error: ' + (errorData.message || 'Server error'));
+            return;
+        }
+
+        const data = await response.json();
+
+        if (data.success) {
+            alert(data.message || 'Movie deleted successfully!');
+            fetchRentedMovies(); 
+        } else {
+            alert('Error: ' + (data.message || 'Unknown error'));
+        }
+
+    } catch (error) {
+        console.error('DeleteMovie Error:', error);
+        alert('There was a problem with the request.');
+    }
+};
+
+
 const fetchRentedMovies = async () => {
     try {
         const response = await fetch('./../api/fetchRentedMovies.php', { method: 'GET' });
@@ -46,13 +82,12 @@ const fetchRentedMovies = async () => {
             console.error('Failed to fetch rented movies');
             return;
         }
-       
+
 
         const data = await response.json();
-         console.log('Rented Movies Response:', data);
         const movies = data.data || [];
 
-        rentedMoviesContainer.innerHTML = ''; 
+        rentedMoviesContainer.innerHTML = '';
 
         if (movies.length === 0) {
             console.log('movies', movies);
@@ -62,8 +97,20 @@ const fetchRentedMovies = async () => {
 
         const ul = document.createElement('ul');
         movies.forEach(movie => {
+            //Lista elementti
             const li = document.createElement('li');
             li.textContent = `${movie.Nimi}  (palautus: ${movie.PalautusPVM})`;
+
+            //Lisätään poista linkki
+            const deleteLink = document.createElement('a');
+            deleteLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                deleteMovie(movie.ElokuvaID);
+            });
+            deleteLink.href = '#';
+            deleteLink.textContent = 'Poista';
+
+            li.appendChild(deleteLink);
             ul.appendChild(li);
         });
 

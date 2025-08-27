@@ -1,8 +1,9 @@
 <?php
 session_start();
+session_regenerate_id(true);
 
 // Redirect to login if user is not logged in or CSRF token is missing
-if (!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !isset($_SESSION['csrf_token'])) {
+if (!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn']) {
     header('Location: ./../index.php'); // adjust path if needed
     exit;
 }
@@ -24,9 +25,11 @@ $csrf_token = $_SESSION['csrf_token'];
     <link rel="stylesheet" href="./../styles/form.css">
     <link rel="stylesheet" href="./../styles/dashboard.css">
     <link rel="stylesheet" href="./../styles/button.css">
+    <link rel="stylesheet" href="./../styles/nav.css">
 </head>
 
 <body>
+    <?php require_once __DIR__ . '/../includes/nav.php'; ?>
     <div class="container">
         <div class="formContainer">
             <h1>Dashboard</h1>
@@ -35,7 +38,6 @@ $csrf_token = $_SESSION['csrf_token'];
                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
                 <label for="movie">Elokuva:</label>
                 <select id="movie" name="movie">
-                    <option value="0">Valitse elokuva</option>
                 </select>
                 <input type="submit" value="Vuokraa"></input>
             </form>
@@ -44,12 +46,15 @@ $csrf_token = $_SESSION['csrf_token'];
         <div class="rentedMovies">
             <h2>Omat vuokraukset</h2>
             <div id="rentedMovies">
-                
+
             </div>
 
         </div>
     </div>
     <script src="./../js/fetchMovies.js"></script>
+    <script>
+        window.csrfToken = "<?php echo $csrf_token; ?>";
+    </script>
 </body>
 
 </html>

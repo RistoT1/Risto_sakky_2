@@ -9,28 +9,4 @@ body{
 h1 {    
     color: #333;
 }
-nav {
-    background-color: #c1cec2;
-    padding: 10px;
-}
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.brand {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
-}
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-}
-.nav-links li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
+

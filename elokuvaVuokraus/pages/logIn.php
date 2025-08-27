@@ -23,21 +23,26 @@ $csrf_token = $_SESSION['csrf_token'];
     <title>Document</title>
     <link rel="stylesheet" href="./../styles/form.css">
     <link rel="stylesheet" href="./../styles/main.css">
+    <link rel="stylesheet" href="./../styles/nav.css">
 </head>
 
 <body>
-    <div class="formContainer">
-        <h1>Kirjaudu</h1>
-        <form action="" method="post">
-            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
-            <label for="username">Käyttäjänimi:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Salasana:</label>
-            <input type="password" id="password" name="password" required>
-            <input type="submit" value="Kirjaudu"></input>
-        </form>
-        <p>Ei tiliä? <a href="./signUp.php">Rekisteröidy</a></p>
-    </div>
+    <?php require_once __DIR__ . '/../includes/nav.php'; ?>
+    <main>
+        <div class="formContainer">
+            <h1>Kirjaudu</h1>
+            <form action="" method="post">
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
+                <label for="username">Käyttäjänimi:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Salasana:</label>
+                <input type="password" id="password" name="password" required>
+                <input type="submit" value="Kirjaudu"></input>
+            </form>
+            <p>Ei tiliä? <a href="./signUp.php">Rekisteröidy</a></p>
+        </div>
+    </main>
     <script src="./../js/logIn.js"></script>
 </body>
+
 </html>
