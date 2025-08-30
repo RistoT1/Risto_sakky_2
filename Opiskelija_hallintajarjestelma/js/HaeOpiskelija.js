@@ -27,7 +27,7 @@ form.addEventListener("submit", async (e) => {
     const formData = new FormData(form);
     const queryString = new URLSearchParams(formData).toString();
 
-    const response = await fetch(`your-api-endpoint?${queryString}`);
+    const response = await fetch(`../api/HaeOpiskelijaFetch.php?${queryString}`);
     const data = await response.json();
     if(!response.ok) {
         console.error("Error fetching data:", data);
