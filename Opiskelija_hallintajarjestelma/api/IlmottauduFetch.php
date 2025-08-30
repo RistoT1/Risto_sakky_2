@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "../../src/db.php"; // adjust path if needed
+require_once __DIR__ . "../../src/db.php"; 
 header("Content-Type: application/json; charset=UTF-8");
 
 try {

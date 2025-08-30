@@ -24,11 +24,11 @@
         <div class="form-container">
             <form id="HaeForm" class="SuorituksetForm">
                 <label id="formLabel" for="inputField">Opiskelijan sukunimi</label>
-                <input type="text" id="inputField" placeholder="Opiskelijan sukunimi" required>
+                <input type="text" id="inputField" name="Sukunimi" placeholder="Opiskelijan sukunimi" required>
                 <button type="submit">Hae opiskelija</button>
             </form>
         </div>
-        <div class="Suoritus-Info">
+        <div class="Suoritus-Info" id="Suoritus-Info">
 
         </div>
     </main>
