@@ -1,0 +1,2 @@
+Collection of Projects – Second Year, Savo Ammattiopisto
+Showcasing projects created during my second year as a student at Savo Ammattiopisto, demonstrating advanced skills in programming, web development, and software development. This year, I expanded my expertise by integrating SQL databases, implementing AJAX for dynamic web functionality, and developing more complex and interactive applications.
